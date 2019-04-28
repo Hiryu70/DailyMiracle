@@ -1,14 +1,11 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
 using DailyMiracle.Services;
 using DailyMiracle.Views;
 
 namespace DailyMiracle
 {
-    public partial class App : Application
+    public partial class App
     {
-
         public App()
         {
             InitializeComponent();

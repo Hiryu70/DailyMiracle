@@ -1,6 +1,4 @@
-﻿using System;
-
-using DailyMiracle.Models;
+﻿using DailyMiracle.Models;
 
 namespace DailyMiracle.ViewModels
 {

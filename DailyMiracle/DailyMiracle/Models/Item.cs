@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DailyMiracle.Models
+﻿namespace DailyMiracle.Models
 {
     public class Item
     {

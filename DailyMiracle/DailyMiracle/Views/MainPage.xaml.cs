@@ -1,47 +1,43 @@
 ﻿using DailyMiracle.Models;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace DailyMiracle.Views
 {
-    // Learn more about making custom code visible in the Xamarin.Forms previewer
-    // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(true)]
-    public partial class MainPage : MasterDetailPage
+    public partial class MainPage
     {
-        Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
+        readonly Dictionary<MenuItemType, NavigationPage> _menuPages = new Dictionary<MenuItemType, NavigationPage>();
         public MainPage()
         {
             InitializeComponent();
 
             MasterBehavior = MasterBehavior.Popover;
 
-            MenuPages.Add((int)MenuItemType.Browse, (NavigationPage)Detail);
+            _menuPages.Add(MenuItemType.Silence, (NavigationPage)Detail);
         }
 
-        public async Task NavigateFromMenu(int id)
+        public async Task NavigateFromMenu(MenuItemType id)
         {
-            if (!MenuPages.ContainsKey(id))
+            if (!_menuPages.ContainsKey(id))
             {
                 switch (id)
                 {
-                    case (int)MenuItemType.Silence:
-                        MenuPages.Add(id, new NavigationPage(new SilencePage()));
+                    case MenuItemType.Silence:
+                        _menuPages.Add(id, new NavigationPage(new SilencePage()));
                         break;
-                    case (int)MenuItemType.Browse:
-                        MenuPages.Add(id, new NavigationPage(new ItemsPage()));
-                        break;
-                    case (int)MenuItemType.About:
-                        MenuPages.Add(id, new NavigationPage(new AboutPage()));
-                        break;
+                    //case MenuItemType.Browse:
+                    //    _menuPages.Add(id, new NavigationPage(new ItemsPage()));
+                    //    break;
+                    //case MenuItemType.About:
+                    //    _menuPages.Add(id, new NavigationPage(new AboutPage()));
+                    //    break;
                 }
             }
 
-            var newPage = MenuPages[id];
+            var newPage = _menuPages[id];
 
             if (newPage != null && Detail != newPage)
             {

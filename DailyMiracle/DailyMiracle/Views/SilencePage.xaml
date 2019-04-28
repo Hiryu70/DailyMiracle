@@ -2,7 +2,12 @@
 <ContentPage x:Class="DailyMiracle.Views.SilencePage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:DailyMiracle.ViewModels"
              Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <viewModels:SilenceViewModel />
+    </ContentPage.BindingContext>
 
     <Grid Margin="15">
         <Grid.RowDefinitions>
@@ -26,6 +31,4 @@
                 Command="{Binding StartTimerCommand}"
                 Text="Начать" />
     </Grid>
-
-
 </ContentPage>

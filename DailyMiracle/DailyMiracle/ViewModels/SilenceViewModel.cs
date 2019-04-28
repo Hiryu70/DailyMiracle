@@ -23,8 +23,8 @@ namespace DailyMiracle.ViewModels
 
         public string Time
         {
-            get { return _time; }
-            set { SetProperty(ref _time, value); }
+            get => _time;
+            set => SetProperty(ref _time, value);
         }
 
         private void StartTimer()
