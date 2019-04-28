@@ -29,6 +29,9 @@ namespace DailyMiracle.Views
             {
                 switch (id)
                 {
+                    case (int)MenuItemType.Silence:
+                        MenuPages.Add(id, new NavigationPage(new SilencePage()));
+                        break;
                     case (int)MenuItemType.Browse:
                         MenuPages.Add(id, new NavigationPage(new ItemsPage()));
                         break;

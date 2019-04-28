@@ -1,40 +1,26 @@
-﻿using System;
+﻿using DailyMiracle.ViewModels;
 using System.ComponentModel;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-using DailyMiracle.Models;
-using DailyMiracle.ViewModels;
 
 namespace DailyMiracle.Views
 {
-    // Learn more about making custom code visible in the Xamarin.Forms previewer
-    // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(true)]
-    public partial class SilencePage : ContentPage
+    public partial class SilencePage
     {
-        ItemDetailViewModel viewModel;
+        SilenceViewModel _viewModel;
 
-        public SilencePage(ItemDetailViewModel viewModel)
+        public SilencePage(SilenceViewModel viewModel)
         {
             InitializeComponent();
 
-            BindingContext = this.viewModel = viewModel;
+            BindingContext = _viewModel = viewModel;
         }
 
         public SilencePage()
         {
             InitializeComponent();
-
-            var item = new Item
-            {
-                Text = "Item 1",
-                Description = "This is an item description."
-            };
-
-            viewModel = new ItemDetailViewModel(item);
-            BindingContext = viewModel;
+            
+            _viewModel = new SilenceViewModel();
+            BindingContext = _viewModel;
         }
     }
 }
