@@ -3,6 +3,11 @@
     public enum MenuItemType
     {
         Silence,
+        Affirmation,
+        Visualization,
+        Diary,
+        Reading,
+        Sport,
         Browse,
         About
     }

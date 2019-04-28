@@ -18,7 +18,11 @@ namespace DailyMiracle.Views
             var menuItems = new List<HomeMenuItem>
             {
                 new HomeMenuItem {Id = MenuItemType.Silence, Title="Тишина" },
-                new HomeMenuItem {Id = MenuItemType.Silence, Title="Тишина" },
+                new HomeMenuItem {Id = MenuItemType.Affirmation, Title="Аффирмации" },
+                new HomeMenuItem {Id = MenuItemType.Visualization, Title="Визуализация" },
+                new HomeMenuItem {Id = MenuItemType.Diary, Title="Дневник" },
+                new HomeMenuItem {Id = MenuItemType.Reading, Title="Чтение" },
+                new HomeMenuItem {Id = MenuItemType.Sport, Title="Физические упражнения" }
                 //new HomeMenuItem {Id = MenuItemType.Browse, Title="Browse" },
                 //new HomeMenuItem {Id = MenuItemType.About, Title="About" }
             };
@@ -31,7 +35,7 @@ namespace DailyMiracle.Views
                 if (e.SelectedItem == null)
                     return;
 
-                var id = ((HomeMenuItem)e.SelectedItem).Id;
+                var id = (int)((HomeMenuItem)e.SelectedItem).Id;
                 await RootPage.NavigateFromMenu(id);
             };
         }

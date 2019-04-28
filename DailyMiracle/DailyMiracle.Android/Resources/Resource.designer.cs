@@ -5138,7 +5138,7 @@ namespace DailyMiracle.Droid
 			public const int tooltip_frame_light = 2130837809;
 			
 			// aapt resource value: 0x7f020132
-			public const int visualisation = 2130837810;
+			public const int visualization = 2130837810;
 			
 			// aapt resource value: 0x7f020133
 			public const int xamarin_logo = 2130837811;
