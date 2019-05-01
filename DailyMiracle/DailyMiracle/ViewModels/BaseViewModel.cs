@@ -7,12 +7,16 @@ using Xamarin.Forms;
 
 using DailyMiracle.Models;
 using DailyMiracle.Services;
+using DailyMiracle.Views;
 
 namespace DailyMiracle.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
+
+        public MainPage RootPage => Application.Current.MainPage as MainPage;
+
 
         bool _isBusy = false;
         public bool IsBusy

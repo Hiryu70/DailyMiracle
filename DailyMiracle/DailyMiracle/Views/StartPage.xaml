@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="DailyMiracle.Views.StartPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:DailyMiracle.ViewModels"
+             Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <viewModels:StartViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0">
+            <Label.FormattedText>
+                <FormattedString>
+                    <FormattedString.Spans>
+                        <Span Text="Магических дней: " />
+                        <Span FontAttributes="Bold" Text="{Binding MagicalDays}" />
+                    </FormattedString.Spans>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <Button Grid.Row="1"
+                Command="{Binding GotoBeginCommand}"
+                Text="Начать" />
+
+        <Button Grid.Row="2"
+                Command="{Binding GotoCalendarCommand}"
+                Text="Календарь" />
+
+        <Button Grid.Row="3"
+                Command="{Binding GotoDiaryCommand}"
+                Text="Дневник" />
+
+        <Button Grid.Row="4"
+                Command="{Binding GotoSettingsCommand}"
+                Text="Настройки" />
+    </Grid>
+</ContentPage>

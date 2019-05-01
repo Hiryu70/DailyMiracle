@@ -22,6 +22,9 @@
     <Compile Update="Views\ReadingPage.xaml.cs">
       <DependentUpon>ReadingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\StartPage.xaml.cs">
+      <DependentUpon>StartPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\SportPage.xaml.cs">
       <DependentUpon>SportPage.xaml</DependentUpon>
     </Compile>

@@ -16,7 +16,7 @@ namespace DailyMiracle.Views
 
             MasterBehavior = MasterBehavior.Popover;
 
-            _menuPages.Add((int)MenuItemType.Silence, (NavigationPage)Detail);
+            _menuPages.Add((int)MenuItemType.Start, (NavigationPage)Detail);
         }
 
         public async Task NavigateFromMenu(int id)
@@ -25,6 +25,9 @@ namespace DailyMiracle.Views
             {
                 switch (id)
                 {
+                    case (int)MenuItemType.Start:
+                        _menuPages.Add(id, new NavigationPage(new StartPage()));
+                        break;
                     case (int)MenuItemType.Silence:
                         _menuPages.Add(id, new NavigationPage(new SilencePage()));
                         break;

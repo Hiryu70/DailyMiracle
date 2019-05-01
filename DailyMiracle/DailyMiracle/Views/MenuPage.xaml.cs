@@ -17,6 +17,7 @@ namespace DailyMiracle.Views
 
             var menuItems = new List<HomeMenuItem>
             {
+                new HomeMenuItem {Id = MenuItemType.Start, Title="Старт" },
                 new HomeMenuItem {Id = MenuItemType.Silence, Title="Тишина" },
                 new HomeMenuItem {Id = MenuItemType.Affirmation, Title="Аффирмации" },
                 new HomeMenuItem {Id = MenuItemType.Visualization, Title="Визуализация" },

@@ -16,7 +16,7 @@
                 </OnPlatform>
             </NavigationPage.Icon>
             <x:Arguments>
-                <views:SilencePage />
+                <views:StartPage />
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

@@ -2,12 +2,15 @@
 {
     public enum MenuItemType
     {
+        Start,
         Silence,
         Affirmation,
         Visualization,
         Diary,
         Reading,
         Sport,
+        Calendar,
+        Settings,
         Browse,
         About
     }
