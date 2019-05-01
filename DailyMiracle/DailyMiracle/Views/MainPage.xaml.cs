@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using DailyMiracle.ViewModels;
 using Xamarin.Forms;
 
 namespace DailyMiracle.Views
@@ -46,20 +47,17 @@ namespace DailyMiracle.Views
                     case (int)MenuItemType.Sport:
                         _menuPages.Add(id, new NavigationPage(new SportPage()));
                         break;
-                        //case MenuItemType.Browse:
-                        //    _menuPages.Add(id, new NavigationPage(new ItemsPage()));
-                        //    break;
-                        //case MenuItemType.About:
-                        //    _menuPages.Add(id, new NavigationPage(new AboutPage()));
-                        //    break;
                 }
             }
 
             var newPage = _menuPages[id];
-
             if (newPage != null && Detail != newPage)
             {
+                var fromViewModel = (BaseViewModel)((NavigationPage) Detail).CurrentPage.BindingContext;
+                fromViewModel.OnNavigatedFrom();
                 Detail = newPage;
+                var toViewModel = (BaseViewModel)newPage.CurrentPage.BindingContext;
+                toViewModel.OnNavigatedTo();
 
                 if (Device.RuntimePlatform == Device.Android)
                     await Task.Delay(100);

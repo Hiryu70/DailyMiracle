@@ -11,8 +11,6 @@
         Sport,
         Calendar,
         Settings,
-        Browse,
-        About
     }
 
     public class HomeMenuItem

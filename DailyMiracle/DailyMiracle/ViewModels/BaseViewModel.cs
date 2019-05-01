@@ -11,6 +11,11 @@ namespace DailyMiracle.ViewModels
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
+        private int _secondsSpent;
+        private TimeSpan _activityTime = TimeSpan.FromMinutes(10);
+        private bool _stopTimer;
+        string _time = "10:00";
+
         public BaseViewModel()
         {
             OnSwipedCommand = new Command(OnSwiped);
@@ -21,6 +26,11 @@ namespace DailyMiracle.ViewModels
 
         public Command OnSwipedCommand { get; set; }
 
+        public string Time
+        {
+            get => _time;
+            set => SetProperty(ref _time, value);
+        }
 
         bool _isBusy = false;
         public bool IsBusy
@@ -47,6 +57,47 @@ namespace DailyMiracle.ViewModels
         {
         }
 
+        public void OnNavigatedFrom()
+        {
+            _stopTimer = true;
+        }
+
+        public void OnNavigatedTo()
+        {
+            _stopTimer = false;
+            StartTimer();
+        }
+
+        protected virtual void StartTimer()
+        {
+            Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
+        }
+
+
+        private bool OnTimerTick()
+        {
+            if (_stopTimer)
+                return false;
+
+            _secondsSpent++;
+
+            var elapsedSeconds = _activityTime.TotalSeconds - _secondsSpent;
+            var elapsedTime = TimeSpan.FromSeconds(elapsedSeconds);
+
+            if (elapsedTime.TotalSeconds > 0)
+            {
+                var minutes = elapsedTime.Minutes.ToString("00");
+                var seconds = elapsedTime.Seconds.ToString("00");
+                Time = $"{minutes}:{seconds}";
+            }
+            else
+            {
+                Time = "00:00";
+                return false;
+            }
+
+            return true;
+        }
 
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName]string propertyName = "",
