@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
-using Android.OS;
 
 namespace DailyMiracle.Droid
 {
@@ -10,11 +9,6 @@ namespace DailyMiracle.Droid
         NoHistory  = true)]
     public class SplashActivity : Activity
     {
-        protected override void OnCreate(Bundle savedInstanceState)
-        {
-            base.OnCreate(savedInstanceState);
-        }
-
         protected override void OnResume()
         {
             base.OnResume();
@@ -22,7 +16,7 @@ namespace DailyMiracle.Droid
             startUpwork.Start();
         }
 
-        private async void SimulateStartup()
+        private void SimulateStartup()
         {
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }
