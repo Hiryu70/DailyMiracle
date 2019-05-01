@@ -30,5 +30,17 @@
         <Button Grid.Row="3"
                 Command="{Binding StartTimerCommand}"
                 Text="Начать" />
+        <BoxView Grid.Row="0"
+                 Grid.RowSpan="3"
+                 Color="Transparent">
+            <BoxView.GestureRecognizers>
+                <SwipeGestureRecognizer Command="{Binding OnSwipedCommand}"
+                                        CommandParameter="Left"
+                                        Direction="Left" />
+                <SwipeGestureRecognizer Command="{Binding OnSwipedCommand}"
+                                        CommandParameter="Right"
+                                        Direction="Right" />
+            </BoxView.GestureRecognizers>
+        </BoxView>
     </Grid>
 </ContentPage>

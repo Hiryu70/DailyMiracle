@@ -1,6 +1,4 @@
-﻿using Xamarin.Forms;
-using DailyMiracle.Services;
-using DailyMiracle.Views;
+﻿using DailyMiracle.Views;
 
 namespace DailyMiracle
 {
@@ -10,7 +8,6 @@ namespace DailyMiracle
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
             MainPage = new MainPage();
         }
 

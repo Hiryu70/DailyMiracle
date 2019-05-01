@@ -1,4 +1,5 @@
 ﻿using System;
+using DailyMiracle.Models;
 using Xamarin.Forms;
 
 namespace DailyMiracle.ViewModels
@@ -25,6 +26,20 @@ namespace DailyMiracle.ViewModels
         {
             get => _time;
             set => SetProperty(ref _time, value);
+        }
+
+        protected override async void OnSwiped(object parameter)
+        {
+            var direction = parameter as string;
+            switch (direction)
+            {
+                case "Left":
+                    await RootPage.NavigateFromMenu((int)MenuItemType.Visualization);
+                    break;
+                case "Right":
+                    await RootPage.NavigateFromMenu((int)MenuItemType.Silence);
+                    break;
+            }
         }
 
         private void StartTimer()

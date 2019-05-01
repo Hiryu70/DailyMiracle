@@ -5,17 +5,21 @@ using System.Runtime.CompilerServices;
 
 using Xamarin.Forms;
 
-using DailyMiracle.Models;
-using DailyMiracle.Services;
 using DailyMiracle.Views;
 
 namespace DailyMiracle.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
+        public BaseViewModel()
+        {
+            OnSwipedCommand = new Command(OnSwiped);
+        }
+
 
         public MainPage RootPage => Application.Current.MainPage as MainPage;
+
+        public Command OnSwipedCommand { get; set; }
 
 
         bool _isBusy = false;
@@ -38,6 +42,11 @@ namespace DailyMiracle.ViewModels
             get { return _description; }
             set { SetProperty(ref _description, value); }
         }
+
+        protected virtual void OnSwiped(object parameter)
+        {
+        }
+
 
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName]string propertyName = "",
