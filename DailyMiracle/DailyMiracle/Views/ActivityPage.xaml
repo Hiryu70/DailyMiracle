@@ -11,29 +11,35 @@
 
     <Grid Margin="15">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="2*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="3*" />
         </Grid.RowDefinitions>
 
-        <Image Grid.Row="0" Source="{Binding Image}" />
-        <Label Grid.Row="1"
-               FontSize="50"
+        <Label Grid.Row="0"
+               FontAttributes="Bold"
+               FontSize="25"
                HorizontalTextAlignment="Center"
-               Text="{Binding Time}" />
+               Text="{Binding Title}" />
+        <Image Grid.Row="1" Source="{Binding Image}" />
         <Label Grid.Row="2"
                FontSize="50"
                HorizontalTextAlignment="Center"
-               Text="{Binding Pause, Converter={StaticResource PauseToSignConverter}}" />
+               Text="{Binding Time}" />
         <Label Grid.Row="3"
+               FontSize="50"
+               HorizontalTextAlignment="Center"
+               Text="{Binding Pause, Converter={StaticResource PauseToSignConverter}}" />
+        <Label Grid.Row="4"
                FontSize="Large"
                HorizontalTextAlignment="Center"
                Text="{Binding Description}"
                VerticalTextAlignment="Center" />
 
         <BoxView Grid.Row="0"
-                 Grid.RowSpan="4"
+                 Grid.RowSpan="5"
                  Color="Transparent">
             <BoxView.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding OnTapCommand}" />
