@@ -20,44 +20,84 @@ namespace DailyMiracle.Views
             _menuPages.Add((int)MenuItemType.Start, (NavigationPage)Detail);
         }
 
+        public bool Pause { get; set; }
+
         public async Task NavigateFromMenu(int id)
         {
             if (!_menuPages.ContainsKey(id))
             {
+                var properties = new PageProperties();
                 switch (id)
                 {
                     case (int)MenuItemType.Start:
                         _menuPages.Add(id, new NavigationPage(new StartPage()));
                         break;
                     case (int)MenuItemType.Silence:
-                        _menuPages.Add(id, new NavigationPage(new SilencePage()));
+                        properties.Title = "Тишина";
+                        properties.Description =
+                            "Начинайте день со спокойствия, ясностью и безмятежностью, сосредоточтесь на самом важном в жизни.";
+                        properties.Image = "silence.png";
+                        properties.Left = MenuItemType.Affirmation;
+                        properties.Right = MenuItemType.Start;
                         break;
                     case (int)MenuItemType.Affirmation:
-                        _menuPages.Add(id, new NavigationPage(new AffirmationPage()));
+                        properties.Title = "Аффирмации";
+                        properties.Description =
+                            "Позитивные утверждения для проектирования и развития мировозрения для улучшения любой области жизни.";
+                        properties.Image = "affirmation.png";
+                        properties.Left = MenuItemType.Visualization;
+                        properties.Right = MenuItemType.Silence;
                         break;
                     case (int)MenuItemType.Visualization:
-                        _menuPages.Add(id, new NavigationPage(new VisualizationPage()));
+                        properties.Title = "Визуализация";
+                        properties.Description =
+                            "Визуализируйте свои главнейшие цели, сокровенные желания, невероятные мечты.";
+                        properties.Image = "visualization.png";
+                        properties.Left = MenuItemType.Diary;
+                        properties.Right = MenuItemType.Affirmation;
                         break;
                     case (int)MenuItemType.Diary:
-                        _menuPages.Add(id, new NavigationPage(new DiaryPage()));
+                        properties.Title = "Ведение дневника";
+                        properties.Description =
+                            "Ведите дневник для прочищения мозгов, выявления новых идей, повторения и признания прогресса.";
+                        properties.Image = "visualization.png";
+                        properties.Left = MenuItemType.Reading;
+                        properties.Right = MenuItemType.Visualization;
                         break;
                     case (int)MenuItemType.Reading:
-                        _menuPages.Add(id, new NavigationPage(new ReadingPage()));
+                        properties.Title = "Чтение";
+                        properties.Description =
+                            "Читайте минимум 10 страниц в день. Помните о конечной цели чтения.";
+                        properties.Image = "reading.png";
+                        properties.Left = MenuItemType.Sport;
+                        properties.Right = MenuItemType.Diary;
                         break;
                     case (int)MenuItemType.Sport:
-                        _menuPages.Add(id, new NavigationPage(new SportPage()));
+                        properties.Title = "Физические упражнения";
+                        properties.Description =
+                            "Подойдут спортзал, пробежка, йога и другие упражнения, которые заставят вас взбодриться.";
+                        properties.Image = "sport.png";
+                        properties.Left = MenuItemType.Start;
+                        properties.Right = MenuItemType.Reading;
                         break;
                 }
+                _menuPages.Add(id, new NavigationPage(new ActivityPage(properties)));
             }
 
             var newPage = _menuPages[id];
             if (newPage != null && Detail != newPage)
             {
-                var fromViewModel = (BaseViewModel)((NavigationPage) Detail).CurrentPage.BindingContext;
-                fromViewModel.OnNavigatedFrom();
+                if (((NavigationPage) Detail).CurrentPage.BindingContext is ActivityPageViewModel fromViewModel)
+                {
+                    fromViewModel.OnNavigatedFrom();
+                }
+
                 Detail = newPage;
-                var toViewModel = (BaseViewModel)newPage.CurrentPage.BindingContext;
-                toViewModel.OnNavigatedTo();
+
+                if (newPage.CurrentPage.BindingContext is ActivityPageViewModel toViewModel)
+                {
+                    toViewModel.OnNavigatedTo();
+                }
 
                 if (Device.RuntimePlatform == Device.Android)
                     await Task.Delay(100);

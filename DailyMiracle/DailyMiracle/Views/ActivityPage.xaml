@@ -1,39 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="DailyMiracle.Views.SportPage"
+<ContentPage x:Class="DailyMiracle.Views.ActivityPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:DailyMiracle.ViewModels"
+             xmlns:dailyMiracle="clr-namespace:DailyMiracle"
              Title="{Binding Title}">
 
-    <ContentPage.BindingContext>
-        <viewModels:SportViewModel />
-    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <dailyMiracle:PauseToSignConverter x:Key="PauseToSignConverter" />
+    </ContentPage.Resources>
 
     <Grid Margin="15">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="3*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="3*" />
         </Grid.RowDefinitions>
 
-        <Image Grid.Row="0" Source="sport.png" />
+        <Image Grid.Row="0" Source="{Binding Image}" />
         <Label Grid.Row="1"
                FontSize="50"
                HorizontalTextAlignment="Center"
                Text="{Binding Time}" />
         <Label Grid.Row="2"
+               FontSize="50"
+               HorizontalTextAlignment="Center"
+               Text="{Binding Pause, Converter={StaticResource PauseToSignConverter}}" />
+        <Label Grid.Row="3"
                FontSize="Large"
                HorizontalTextAlignment="Center"
                Text="{Binding Description}"
                VerticalTextAlignment="Center" />
-        <Button Grid.Row="3"
-                Command="{Binding StartTimerCommand}"
-                Text="Начать" />
+
         <BoxView Grid.Row="0"
-                 Grid.RowSpan="3"
+                 Grid.RowSpan="4"
                  Color="Transparent">
             <BoxView.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding OnTapCommand}" />
                 <SwipeGestureRecognizer Command="{Binding OnSwipedCommand}"
                                         CommandParameter="Left"
                                         Direction="Left" />

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -16,26 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\DiaryPage.xaml.cs">
-      <DependentUpon>DiaryPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\ReadingPage.xaml.cs">
-      <DependentUpon>ReadingPage.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Views\StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\SportPage.xaml.cs">
-      <DependentUpon>SportPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\VisualizationPage.xaml.cs">
-      <DependentUpon>VisualizationPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\AffirmationPage.xaml.cs">
-      <DependentUpon>AffirmationPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\SilencePage.xaml.cs">
-      <DependentUpon>SilencePage.xaml</DependentUpon>
+    <Compile Update="Views\ActivityPage.xaml.cs">
+      <DependentUpon>ActivityPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

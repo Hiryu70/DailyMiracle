@@ -1,9 +1,10 @@
 ﻿using DailyMiracle.Models;
+using DailyMiracle.Views;
 using Xamarin.Forms;
 
 namespace DailyMiracle.ViewModels
 {
-    public class StartViewModel : BaseViewModel
+    public class StartViewModel
     {
         public StartViewModel()
         {
@@ -13,6 +14,8 @@ namespace DailyMiracle.ViewModels
             GotoDiaryCommand = new Command(GotoDiary);
             GotoSettingsCommand = new Command(GotoSettings);
         }
+
+        public MainPage RootPage => Application.Current.MainPage as MainPage;
 
         public int MagicalDays { get; set; }
 

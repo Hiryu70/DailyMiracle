@@ -2,29 +2,49 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-
+using DailyMiracle.Models;
 using Xamarin.Forms;
 
 using DailyMiracle.Views;
 
 namespace DailyMiracle.ViewModels
 {
-    public abstract class BaseViewModel : INotifyPropertyChanged
+    public sealed class ActivityPageViewModel : INotifyPropertyChanged
     {
         private int _secondsSpent;
-        private TimeSpan _activityTime = TimeSpan.FromMinutes(10);
+        private readonly TimeSpan _activityTime = TimeSpan.FromMinutes(10);
         private bool _stopTimer;
         string _time = "10:00";
+        private readonly MenuItemType _leftSwipe;
+        private readonly MenuItemType _rightSwipe;
 
-        public BaseViewModel()
+
+        public ActivityPageViewModel(PageProperties properties)
         {
+            Title = properties.Title;
+            Description = properties.Description;
+            Image = properties.Image;
+            _leftSwipe = properties.Left;
+            _rightSwipe = properties.Right;
+
             OnSwipedCommand = new Command(OnSwiped);
+            OnTapCommand = new Command(OnTap);
         }
 
 
-        public MainPage RootPage => Application.Current.MainPage as MainPage;
+        private MainPage RootPage => Application.Current.MainPage as MainPage;
+
+        public Command OnTapCommand { get; set; }
 
         public Command OnSwipedCommand { get; set; }
+
+        public string Image { get; set; }
+
+        public bool Pause
+        {
+            get => RootPage.Pause;
+            set => RootPage.Pause = value;
+        }
 
         public string Time
         {
@@ -53,8 +73,34 @@ namespace DailyMiracle.ViewModels
             set { SetProperty(ref _description, value); }
         }
 
-        protected virtual void OnSwiped(object parameter)
+        private async void OnSwiped(object parameter)
         {
+            var direction = parameter as string;
+            switch (direction)
+            {
+                case "Left":
+                    await RootPage.NavigateFromMenu((int)_leftSwipe);
+                    break;
+                case "Right":
+                    await RootPage.NavigateFromMenu((int)_rightSwipe);
+                    break;
+            }
+        }
+
+        public void OnTap()
+        {
+            RootPage.Pause = !RootPage.Pause;
+
+            if (RootPage.Pause)
+            {
+                _stopTimer = true;
+            }
+            else
+            {
+                _stopTimer = false;
+                StartTimer();
+            }
+            OnPropertyChanged(nameof(Pause));
         }
 
         public void OnNavigatedFrom()
@@ -68,11 +114,10 @@ namespace DailyMiracle.ViewModels
             StartTimer();
         }
 
-        protected virtual void StartTimer()
+        private void StartTimer()
         {
             Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
         }
-
 
         private bool OnTimerTick()
         {
@@ -99,7 +144,7 @@ namespace DailyMiracle.ViewModels
             return true;
         }
 
-        protected bool SetProperty<T>(ref T backingStore, T value,
+        private bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName]string propertyName = "",
             Action onChanged = null)
         {
@@ -114,7 +159,8 @@ namespace DailyMiracle.ViewModels
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             var changed = PropertyChanged;
             if (changed == null)
