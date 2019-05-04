@@ -10,14 +10,14 @@ namespace DailyMiracle.Views
     [DesignTimeVisible(true)]
     public partial class MainPage
     {
-        readonly Dictionary<int, NavigationPage> _menuPages = new Dictionary<int, NavigationPage>();
+        readonly Dictionary<int, ContentPage> _menuPages = new Dictionary<int, ContentPage>();
         public MainPage()
         {
             InitializeComponent();
 
             MasterBehavior = MasterBehavior.Popover;
 
-            _menuPages.Add((int)MenuItemType.Start, (NavigationPage)Detail);
+            _menuPages.Add((int)MenuItemType.Start, (ContentPage)Detail);
         }
 
         public bool Pause { get; set; }
@@ -30,7 +30,7 @@ namespace DailyMiracle.Views
                 switch (id)
                 {
                     case (int)MenuItemType.Start:
-                        _menuPages.Add(id, new NavigationPage(new StartPage()));
+                        _menuPages.Add(id, new StartPage());
                         break;
                     case (int)MenuItemType.Silence:
                         properties.Title = "Тишина";
@@ -81,20 +81,20 @@ namespace DailyMiracle.Views
                         properties.Right = MenuItemType.Reading;
                         break;
                 }
-                _menuPages.Add(id, new NavigationPage(new ActivityPage(properties)));
+                _menuPages.Add(id, new ActivityPage(properties));
             }
 
             var newPage = _menuPages[id];
             if (newPage != null && Detail != newPage)
             {
-                if (((NavigationPage) Detail).CurrentPage.BindingContext is ActivityPageViewModel fromViewModel)
+                if (((ContentPage) Detail).BindingContext is ActivityPageViewModel fromViewModel)
                 {
                     fromViewModel.OnNavigatedFrom();
                 }
 
                 Detail = newPage;
 
-                if (newPage.CurrentPage.BindingContext is ActivityPageViewModel toViewModel)
+                if (newPage.BindingContext is ActivityPageViewModel toViewModel)
                 {
                     toViewModel.OnNavigatedTo();
                 }

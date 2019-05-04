@@ -37,12 +37,12 @@
                 Command="{Binding GotoCalendarCommand}"
                 Text="Календарь" />
 
-        <Button Grid.Row="3"
+        <!--<Button Grid.Row="3"
                 Command="{Binding GotoDiaryCommand}"
                 Text="Дневник" />
 
         <Button Grid.Row="4"
                 Command="{Binding GotoSettingsCommand}"
-                Text="Настройки" />
+                Text="Настройки" />-->
     </Grid>
 </ContentPage>

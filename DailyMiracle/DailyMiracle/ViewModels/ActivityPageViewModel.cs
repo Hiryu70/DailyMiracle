@@ -110,6 +110,10 @@ namespace DailyMiracle.ViewModels
 
         public void OnNavigatedTo()
         {
+            OnPropertyChanged(nameof(Pause));
+            if (RootPage.Pause)
+                return;
+
             _stopTimer = false;
             StartTimer();
         }
