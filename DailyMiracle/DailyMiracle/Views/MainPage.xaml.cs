@@ -60,7 +60,7 @@ namespace DailyMiracle.Views
                         properties.Title = "Ведение дневника";
                         properties.Description =
                             "Ведите дневник для прочищения мозгов, выявления новых идей, повторения и признания прогресса.";
-                        properties.Image = "visualization.png";
+                        properties.Image = "diary.png";
                         properties.Left = MenuItemType.Reading;
                         properties.Right = MenuItemType.Visualization;
                         break;
