@@ -6,12 +6,30 @@
     <Application.Resources>
         <ResourceDictionary>
             <!--  Global Styles  -->
-            <Color x:Key="DarkPrimaryColor">#7B1FA2</Color>
+            <Color x:Key="DarkPrimaryColor">#B255FD</Color>
+            <Color x:Key="DarkSecondaryColor">#FF972E</Color>
+            <Color x:Key="LightColor">#9A9A9A</Color>
             <Color x:Key="NavigationPrimary">#2196F3</Color>
-            <Style x:Key="LabelStyle" TargetType="Label">
-                <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="FontFamily" Value="Helvetica" />
+            <Style x:Key="ButtonStyle"
+                   TargetType="Button">
+                <Setter Property="FontFamily" Value="Calibri" />
                 <Setter Property="FontSize" Value="20" />
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkSecondaryColor}" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+            <Style x:Key="LabelStyle"
+                   TargetType="Label">
+                <Setter Property="FontFamily" Value="Calibri" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="TextColor" Value="{StaticResource LightColor}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            <Style x:Key="DayCountStyle"
+                   TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Calibri" />
+                <Setter Property="FontSize" Value="40" />
+                <Setter Property="TextColor" Value="{StaticResource DarkPrimaryColor}" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
             </Style>
             <Style TargetType="NavigationPage">
