@@ -2,12 +2,7 @@
 <ContentPage x:Class="DailyMiracle.Views.StartPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:DailyMiracle.ViewModels"
              Title="{Binding Title}">
-
-    <ContentPage.BindingContext>
-        <viewModels:StartViewModel />
-    </ContentPage.BindingContext>
 
     <Grid Margin="15">
 
@@ -32,7 +27,7 @@
             <Label Style="{StaticResource LabelStyle}"
                    Text="Магических дней" />
             <Label Style="{StaticResource DayCountStyle}"
-                   Text="{Binding MagicalDays}" />
+                   Text="{Binding MiracleDaysCount}" />
         </StackLayout>
 
 
@@ -48,12 +43,31 @@
                 Style="{StaticResource ButtonStyle}"
                 Text="Календарь" />
 
-        <!--<Button Grid.Row="3"
-                Command="{Binding GotoDiaryCommand}"
-                Text="Дневник" />
-
         <Button Grid.Row="4"
-                Command="{Binding GotoSettingsCommand}"
-                Text="Настройки" />-->
+                Grid.Column="1"
+                Command="{Binding UpdateCommand}"
+                Text="Обновить" />
+
+        <Grid Grid.Row="5"
+              Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
+                    Command="{Binding AddCommand}"
+                    Text="Добавить" />
+
+            <Button Grid.Column="1"
+                    Command="{Binding ClearCommand}"
+                    Text="Очистить" />
+        </Grid>
+
+
+        <ListView Grid.Row="6"
+                  Grid.Column="1"
+                  ItemsSource="{Binding MiracleDays}" />
+
     </Grid>
 </ContentPage>

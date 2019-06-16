@@ -1,14 +1,21 @@
-﻿using DailyMiracle.Views;
+﻿using DailyMiracle.ViewModels;
+using DailyMiracle.Views;
 
 namespace DailyMiracle
 {
     public partial class App
     {
-        public App()
+        public App(IMiracleDaysRepository miracleDaysRepository)
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            var startViewModel = new StartViewModel(miracleDaysRepository);
+            startViewModel.UpdateCommand.Execute(null);
+            var startPage = new StartPage
+            {
+                BindingContext = startViewModel
+            };
+            MainPage = startPage;
         }
 
         protected override void OnStart()
