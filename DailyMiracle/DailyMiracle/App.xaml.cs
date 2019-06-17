@@ -1,5 +1,6 @@
 ﻿using DailyMiracle.ViewModels;
 using DailyMiracle.Views;
+using Xamarin.Forms;
 
 namespace DailyMiracle
 {

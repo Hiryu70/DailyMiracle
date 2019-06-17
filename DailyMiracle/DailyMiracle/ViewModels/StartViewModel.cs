@@ -61,7 +61,7 @@ namespace DailyMiracle.ViewModels
 
         private async void GotoBegin()
         {
-            await RootPage.NavigateFromMenu((int)MenuItemType.Silence);
+            await StartPage.Instance.Navigation.PushModalAsync(new ActivitiesPage());
         }
 
         private void GotoCalendar()

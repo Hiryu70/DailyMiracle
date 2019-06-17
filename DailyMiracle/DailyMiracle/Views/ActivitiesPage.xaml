@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CarouselPage x:Class="DailyMiracle.Views.ActivitiesPage"
+              xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:dailyMiracle="clr-namespace:DailyMiracle">
+
+    <CarouselPage.Resources>
+        <dailyMiracle:PauseToSignConverter x:Key="PauseToSignConverter" />
+    </CarouselPage.Resources>
+
+    <CarouselPage.ItemTemplate>
+        <DataTemplate>
+            <ContentPage>
+                <Grid Margin="15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="3*" />
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0"
+                           FontAttributes="Bold"
+                           FontSize="25"
+                           HorizontalTextAlignment="Center"
+                           Text="{Binding Title}" />
+                    <Image Grid.Row="1"
+                           Source="{Binding Image}" />
+                    <Label Grid.Row="2"
+                           FontSize="50"
+                           HorizontalTextAlignment="Center"
+                           Text="{Binding Time}" />
+                    <!--<Label Grid.Row="3"
+                       FontSize="50"
+                       HorizontalTextAlignment="Center"
+                       Text="{Binding Pause, Converter={StaticResource PauseToSignConverter}}" />-->
+                    <Label Grid.Row="4"
+                           FontSize="Large"
+                           HorizontalTextAlignment="Center"
+                           Text="{Binding Description}"
+                           VerticalTextAlignment="Center" />
+
+                    <!--<BoxView Grid.Row="0"
+                         Grid.RowSpan="5"
+                         Color="Transparent">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OnTapCommand}" />
+                        <SwipeGestureRecognizer Command="{Binding OnSwipedCommand}"
+                                                CommandParameter="Left"
+                                                Direction="Left" />
+                        <SwipeGestureRecognizer Command="{Binding OnSwipedCommand}"
+                                                CommandParameter="Right"
+                                                Direction="Right" />
+                    </BoxView.GestureRecognizers>
+                </BoxView>-->
+                </Grid>
+            </ContentPage>
+        </DataTemplate>
+    </CarouselPage.ItemTemplate>
+
+</CarouselPage>

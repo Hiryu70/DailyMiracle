@@ -32,7 +32,7 @@ namespace DailyMiracle.ViewModels
         }
 
 
-        private MainPage RootPage => Application.Current.MainPage as MainPage;
+        //private MainPage RootPage => Application.Current.MainPage as MainPage;
 
         public Command OnTapCommand { get; set; }
 
@@ -40,11 +40,11 @@ namespace DailyMiracle.ViewModels
 
         public string Image { get; set; }
 
-        public bool Pause
-        {
-            get => RootPage.Pause;
-            set => RootPage.Pause = value;
-        }
+        //public bool Pause
+        //{
+        //    get => RootPage.Pause;
+        //    set => RootPage.Pause = value;
+        //}
 
         public string Time
         {
@@ -76,31 +76,31 @@ namespace DailyMiracle.ViewModels
         private async void OnSwiped(object parameter)
         {
             var direction = parameter as string;
-            switch (direction)
-            {
-                case "Left":
-                    await RootPage.NavigateFromMenu((int)_leftSwipe);
-                    break;
-                case "Right":
-                    await RootPage.NavigateFromMenu((int)_rightSwipe);
-                    break;
-            }
+            //switch (direction)
+            //{
+            //    case "Left":
+            //        await RootPage.NavigateFromMenu((int)_leftSwipe);
+            //        break;
+            //    case "Right":
+            //        await RootPage.NavigateFromMenu((int)_rightSwipe);
+            //        break;
+            //}
         }
 
         public void OnTap()
         {
-            RootPage.Pause = !RootPage.Pause;
+            //RootPage.Pause = !RootPage.Pause;
 
-            if (RootPage.Pause)
-            {
-                _stopTimer = true;
-            }
-            else
-            {
-                _stopTimer = false;
-                StartTimer();
-            }
-            OnPropertyChanged(nameof(Pause));
+            //if (RootPage.Pause)
+            //{
+            //    _stopTimer = true;
+            //}
+            //else
+            //{
+            //    _stopTimer = false;
+            //    StartTimer();
+            //}
+            //OnPropertyChanged(nameof(Pause));
         }
 
         public void OnNavigatedFrom()
@@ -110,9 +110,9 @@ namespace DailyMiracle.ViewModels
 
         public void OnNavigatedTo()
         {
-            OnPropertyChanged(nameof(Pause));
-            if (RootPage.Pause)
-                return;
+            //OnPropertyChanged(nameof(Pause));
+            //if (RootPage.Pause)
+            //    return;
 
             _stopTimer = false;
             StartTimer();
